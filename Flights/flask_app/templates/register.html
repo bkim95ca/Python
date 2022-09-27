@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+    font-size: 14px;
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(45deg, #ffa0e4 10%, #A2C7E5 90%);
+    height: 100vh
+}
+
+.user {
+    width: 90%;
+    max-width: 340px;
+    margin: 10vh auto;
+}
+
+.user__header {
+    text-align: center;
+    opacity: 0;
+    transform: translate3d(0, 500px, 0);
+    animation: arrive 500ms ease-in-out 0.7s forwards;
+}
+
+.user_title {
+    font-size: 20px;
+    margin-bottom: -10px;
+    font-weight: 500;
+    color: white;
+}
+
+.form {
+    margin-top: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translate3d(0, 500px, 0);
+    animation: arrive 500ms ease-in-out 0.9s forwards;
+}
+
+.form--no {
+    animation: NO 1s ease-in-out;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.form__input {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-family: 14px;
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    transition: 0.3s;
+    
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-family: 14px;
+    -webkit-appearance: none;
+    outline: 0;
+    border: 0;
+    color: white;
+    background-color:#ABA194;
+    transition: 0.3s;
+}
+
+@keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes arrive {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0
+    }
+
+    50% {
+        background-position: 100% 0
+    }
+
+    100% {
+        background-position: 0 0
+    }
+}
+</style>
+<body>
+    <div class="container text-center">
+        <div class="user">
+            <div class="user__header">
+                <h3 class="user_title">Register:</h3>
+                {% for message in get_flashed_messages(category_filter=['reg']) %}
+                    <p>{{message}}</p>
+                {% endfor %}
+                <form class="form" action="/users/register" method="post">
+                    <div class="form__group">
+                        <input type="text" name="first_name" id="first_name" class="form__input" placeholder="First Name">
+                    </div>
+                    <div class="form__group">
+                        <input type="text" name="last_name" id="last_name" class="form__input" placeholder="Last Name">
+                    </div>
+                    <div class="form__group">
+                        <input type="text" name="email" id="email" class="form__input" placeholder="Email">
+                    </div>
+                    <div class="form__group">
+                        <input type="password" name="password" id="password" class="form__input" placeholder="Password">
+                    </div>
+                    <div class="form__group">
+                        <input type="password" name="confirm_pass" id="password2" class="form__input" placeholder="Confirm Password">
+                    </div>
+                    <button class="btn">Register</button>
+                </form>
+            </div>
+</body>
+</html>

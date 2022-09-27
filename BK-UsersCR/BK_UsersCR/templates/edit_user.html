@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+</head>
+<style>
+    .header_container {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<body>
+    <div class="header_container">
+        <h1>Edit User {{this_user.id}}</h1>
+        <p ><a href="/user">Home</a></p>
+    </div>
+    <form action="/user/{{this_user.id}}/update" method="post">
+        <p>First Name: </p>
+        <input type="text" name="first_name" id="first_name" value="{{this_user.first_name}}">
+        <p>Last Name: </p>
+        <input type="text" name="last_name" id="last_name" value="{{this_user.last_name}}">
+        <p>Email: </p>
+        <input type="text" name="email" id="email" value="{{this_user.email}}">
+        <button>Update</button>
+    </form>
+
+    <p><a href="/user/{{this_user.id}}">Show User</a></p>
+</body>
+</html>

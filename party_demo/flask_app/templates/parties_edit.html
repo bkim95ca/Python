@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party Posts</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h1>Edit a party</h1>
+            <div>
+                <a href="/welcome" class="btn btn-primary">Home</a>
+            </div>
+        </div>
+        {% for message in get_flashed_messages() %}
+            <p class="text-danger">{{message}}</p>
+        {%  endfor %}
+        <form action="/parties/{{party.id}}/update" method="post">
+            <label for="what">What:</label>
+            <input type="text" name="what" id="what" value="{{party.what}}" class="form-control">
+            <label for="location">Where:</label>
+            <input type="text" name="location" id="location" value="{{party.location}}" class="form-control">
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date" value="{{party.date}}" class="form-control">
+            <div>
+                <label for="all_ages">All Ages:</label> 
+                <input type="radio" name="all_ages" id="true" value="1" {% if party.all_ages == 1 %}checked{%endif%}>
+                <label for="true">True</label>
+                <input type="radio" name="all_ages" id="false" value="0" {% if party.all_ages == 0 %}checked{%endif%}>
+                <label for="false">False</label>
+            </div>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" cols="30" rows="10">{{party.description}}</textarea>
+            <button class="btn btn-primary">Edit Party</button>
+        </form>
+    </div>
+</body>
+</html>

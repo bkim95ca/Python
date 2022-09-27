@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party Posts</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            {% for message in get_flashed_messages() %}
+            <p class="text-danger">{{message}}</p>
+            {%  endfor %}
+            <h1>{{logged_user.first_name}}'s Parties</h1>
+            <div>
+                <a href="/welcome" class="btn btn-primary">Home</a>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>What</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>All Ages</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for party in logged_user.parties %}
+                <tr>
+                    <td>{{party.what}}</td>
+                    <td>{{party.location}}</td>
+                    <td>{{party.date}}</td>
+                    <td>{%if party.all_ages == 1%}Yes{%else%}No{%endif%}</td>
+                    <td>
+                        <a href="/parties/{{party.id}}">View</a>
+                        <a href="/parties/{{party.id}}/edit">Edit</a>
+                        <a href="/parties/{{party.id}}/delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/parties/new" class="btn btn-primary">Plan a Party</a>
+    </div>
+</body>
+</html>

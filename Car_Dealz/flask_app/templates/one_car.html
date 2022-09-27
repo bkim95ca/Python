@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party Posts</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+            <a href="/users/logout" class="btn btn-danger">Logout</a>
+        </div>
+        <h2>${{car.price}}</h2>
+        <h3>Model: {{car.model}}</h3>
+        <h3>Make: {{car.make}}</h3>
+        <h3>Year: {{car.year}}</h3>
+        <h3>Description: {{car.description}}</h3>
+        <div class="d-flex justify-content-between">
+            <p>Seller: {{car.owner.first_name}} {{car.owner.last_name}}</p>
+            {%if not session['user_id'] == car.user_id%}
+            <a href="/edit/{{car.id}}/delete" class="btn btn-primary">Purchase</a>
+            {%endif%}
+        </div>
+    </div>
+</body>
+</html>
